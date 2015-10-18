@@ -8,11 +8,6 @@ importGamry <- function(inputfile = file.choose(), ncols = 0){
   alldata <- readLines(inputfile)
   fields <- sapply(strsplit(alldata, split = "\t"), length)
   
-  # ncols is an option for importGamry. If it equals zero, importGamry will automatically guess
-  # the correct number of columns by figuring out how many things are in each line of the data file,
-  # then assuming the most frequent number of items in each line is the correct number of columns.
-  # Otherwise you can tell it how many columns you expect.
-  
   if(ncols == 0){  
     fields.to.remove <- grep(which.max(tabulate(fields)),
                              fields, invert = TRUE)

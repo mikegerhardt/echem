@@ -1,0 +1,9 @@
+Package: echem
+Type: Package
+Title: Importing and manipulating data from Gamry potentiostats
+Version: 1.0
+Date: 2015-10-17
+Author: Mike Gerhardt
+Maintainer: Mike Gerhardt <gerhardt.mike@gmail.com>
+Description: Import .DTA files output from Gamry potentiostats during cyclic voltammetry, charge/discharge cycling, etc
+License: What license is it under?

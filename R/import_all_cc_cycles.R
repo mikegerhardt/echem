@@ -5,8 +5,8 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   setwd(filepath)
   
   # set up a list of filenames to import
-  all_cycles_list <- list.files(pattern = "CHARGE")
-  discharge_cycles_list <- mixedsort(list.files(pattern = "DISCHARGE"))
+  all_cycles_list <- list.files(pattern = allcyclesid)
+  discharge_cycles_list <- mixedsort(list.files(pattern = dischargeid))
   discharge_cycle_location <- all_cycles_list %in% discharge_cycles_list
   charge_cycles_list <- mixedsort(all_cycles_list[!discharge_cycle_location])
   

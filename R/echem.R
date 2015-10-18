@@ -46,8 +46,8 @@ import_cc_cycle <- function(inputfile = file.choose(), cols = c("T", "Vf","Im"),
   return(outdf)
 }
 
-import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im")){
-  inputdf <- importGamry(inputfile)
+import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im"), ...){
+  inputdf <- importGamry(inputfile, ...)
   outdf <- inputdf[, cols]
   return(outdf)
 }
@@ -69,8 +69,8 @@ import_cv <- function(inputfile = file.choose(), cols = c("Vf", "Im"),
 
 import_cycling_stats <- function(inputfile = file.choose(),
                                  cols = c("Type", "Cycle", "Charge", "Duration", "Vstart", "Vend", "Energy"),
-                                 efficiencies = TRUE){
-  inputdf <- importGamry(file.choose())
+                                 efficiencies = TRUE, ...){
+  inputdf <- importGamry(inputfile, ...)
   outdf <- inputdf[, cols]
   
   # The next block calculates current and energy efficiencies, there is a tag to shut it off in function options

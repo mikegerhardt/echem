@@ -10,13 +10,11 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   discharge_cycle_location <- all_cycles_list %in% discharge_cycles_list
   charge_cycles_list <- mixedsort(all_cycles_list[!discharge_cycle_location])
   
-  # grab all the charge cycles, tag them as "Charge" type, and add cycle number
+  # import all the charge cycles
   cycle_numbers <- seq(from = 1, to = length(charge_cycles_list), by = 1)
   charge_cycles_data <- lapply(charge_cycles_list, FUN = import_cc_cycle, ...)
-  #charge_cycles_data <- lapply(X = charge_cycles_data, FUN = function(x){x$type <- "Charge"}) 
-  #charge_cycles_data <- mdply(.fun = function(x, y){x$cycle <- y} ,charge_cycles_data, cycle_numbers)
   
-  #grab all discharge cycles, tag as "Discharge", add cycle number
+  # import all discharge cycles
   discharge_cycles_data <- lapply(X = discharge_cycles_list, FUN = import_cc_cycle, ...)
   
   for(i in cycle_numbers){
@@ -28,6 +26,7 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
     discharge_cycles_data[[i]]$cycle <- i
   }
   
+  # set all charge cycles to "Charge" type and all discharge cycles to "Discharge" type
   charge_cycles_df <- ldply(charge_cycles_data)
   charge_cycles_df$type <- "Charge"
   discharge_cycles_df <- ldply(discharge_cycles_data)
@@ -36,8 +35,8 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   # smush everything into a data.frame
   
   all_cycles_df <- rbind(charge_cycles_df, discharge_cycles_df)
-  
+  setwd(home_directory)
   return(all_cycles_df)
   
-  setwd(home_directory)
+  
 }

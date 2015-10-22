@@ -7,4 +7,4 @@ Author: Mike Gerhardt
 Maintainer: Mike Gerhardt <gerhardt.mike@gmail.com>
 Depends: ggplot2, gtools, plyr
 Description: Import .DTA files output from Gamry potentiostats during cyclic voltammetry, charge/discharge cycling, etc
-License: GPL-3
+License: MIT

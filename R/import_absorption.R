@@ -1,4 +1,4 @@
-import_absorption <- function(filename = file.choose,
+import_absorption <- function(filename = file.choose(),
                               data_tag = ">>>>>Begin Spectral Data<<<<<",
                               columns = c("Wavelength", "Absorption")){
   filelines <- readLines(filename)

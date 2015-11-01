@@ -1,14 +1,20 @@
 import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
                                  allcyclesid = "CHARGE",
                                  dischargeid = "DISCHARGE", ...){
-  home_directory <- getwd()
-  setwd(filepath)
+  if(!substr(filepath, nchar(filepath), nchar(filepath)) %in% c("\\", "/")){
+    # This if statement checks to see if filepath ends with "\\" or "/"
+    # since I often forget to add those
+    filepath <- paste(filepath, "\\", sep = "")
+  }
   
   # set up a list of filenames to import
-  all_cycles_list <- list.files(pattern = allcyclesid)
-  discharge_cycles_list <- mixedsort(list.files(pattern = dischargeid))
-  discharge_cycle_location <- all_cycles_list %in% discharge_cycles_list
-  charge_cycles_list <- mixedsort(all_cycles_list[!discharge_cycle_location])
+  all_cycles_list <- list.files(pattern = allcyclesid,
+                                path = filepath)
+  discharge_cycles_list <- lapply(mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE)),
+                                  function(x) paste(filepath, x, sep = ""))
+  #discharge_cycle_location <- all_cycles_list %in% discharge_cycles_list
+  charge_cycles_list <- lapply(mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE, invert = TRUE)),
+                               function(x) paste(filepath, x, sep = ""))
   
   # import all the charge cycles
   cycle_numbers <- seq(from = 1, to = length(charge_cycles_list), by = 1)
@@ -35,7 +41,7 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   # smush everything into a data.frame
   
   all_cycles_df <- rbind(charge_cycles_df, discharge_cycles_df)
-  setwd(home_directory)
+
   return(all_cycles_df)
   
   

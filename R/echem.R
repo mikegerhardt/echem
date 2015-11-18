@@ -35,16 +35,6 @@ importGamry <- function(inputfile = file.choose(), ncols = 0){
   return(outdf)
 }
 
-import_cc_cycle <- function(inputfile = file.choose(), cols = c("T", "Vf","Im"), ...){
-  # function for importing constant current cycles
-  
-  inputdf <- importGamry(inputfile, ...)
-  outdf <- inputdf[, cols]
-  
-  # make a "charge" column so you can plot voltage vs capacity for different currents
-  outdf$Q <- outdf[,"T"] * mean(outdf[,"Im"])
-  return(outdf)
-}
 
 import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im"), ...){
   inputdf <- importGamry(inputfile, ...)

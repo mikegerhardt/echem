@@ -42,7 +42,7 @@ A flag to tell the function whether or not to average the top and bottom traces 
   \item{\dots}{
 %%     ~~Describe \code{\dots} here~~
 }
-}
+
 \details{
 %%  ~~ If necessary, more details than the description above ~~
 }
@@ -74,6 +74,8 @@ Michael Gerhardt
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
 
+import_cell_cv("mrg_CV_#3.DTA")
+
 ## The function is currently defined as
 function (fname = file.choose(), area = 5, rpm = 50, cols = c("T", 
     "Vf", "Im"), movingavg = TRUE, traceavg = TRUE, ...) 
@@ -100,7 +102,7 @@ function (fname = file.choose(), area = 5, rpm = 50, cols = c("T",
   }
 }
 
-import_cell_cv("mrg_CV_#3.DTA")
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }

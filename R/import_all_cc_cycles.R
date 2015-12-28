@@ -21,7 +21,9 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   charge_cycles_df <- ldply(charge_cycles_list, 
                                .fun = function(x){
                                  cycledata <- import_cc_cycle(x)
-                                 cyclenumber <- regmatches(x, regexpr("\\d+",x))
+                                 numberplusdigits <- tail(unlist(strsplit(x, split = "#")), 1)
+                                 cyclenumber <- as.numeric(regmatches(numberplusdigits, 
+                                                                      regexpr("\\d+",numberplusdigits)))
                                  cycledf <- cbind(cycledata, cycle = cyclenumber)
                                  return(cycledf)
                                },
@@ -31,7 +33,9 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   discharge_cycles_df <- ldply(discharge_cycles_list, 
                                .fun = function(x){
                                  cycledata <- import_cc_cycle(x)
-                                 cyclenumber <- regmatches(x, regexpr("\\d+",x))
+                                 numberplusdigits <- tail(unlist(strsplit(x, split = "#")), 1)
+                                 cyclenumber <- as.numeric(regmatches(numberplusdigits, 
+                                                                      regexpr("\\d+",numberplusdigits)))
                                  cycledf <- cbind(cycledata, cycle = cyclenumber)
                                  return(cycledf)
                                },

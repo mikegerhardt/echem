@@ -1,5 +1,6 @@
 \name{import_cv}
 \alias{import_cv}
+\alias{import_all_cyclic_voltammetry}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Import cyclic voltammogram

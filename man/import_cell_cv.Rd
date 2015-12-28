@@ -41,6 +41,7 @@ A flag to tell the function whether or not to average the top and bottom traces 
 }
   \item{\dots}{
 %%     ~~Describe \code{\dots} here~~
+Other arguements to be passed on to importGamry or whatever.
 }
 }
 \details{
@@ -52,6 +53,7 @@ A flag to tell the function whether or not to average the top and bottom traces 
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
+Returns a data frame containing four columns: the current, voltage, power, and the name of the file from which each data point was extracted (referred to as "soc")
 }
 \references{
 %% ~put references to the literature/web site here ~
@@ -73,6 +75,8 @@ Michael Gerhardt
 ##---- Should be DIRECTLY executable !! ----
 ##-- ==>  Define data, use random,
 ##--	or do  help(data=index)  for the standard data sets.
+
+import_cell_cv("mrg_CV_#3.DTA")
 
 ## The function is currently defined as
 function (fname = file.choose(), area = 5, rpm = 50, cols = c("T", 
@@ -100,7 +104,7 @@ function (fname = file.choose(), area = 5, rpm = 50, cols = c("T",
   }
 }
 
-import_cell_cv("mrg_CV_#3.DTA")
+
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
 \keyword{ ~kwd1 }

@@ -17,12 +17,13 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
                                function(x) paste(filepath, x, sep = ""))
   
   # import all the charge cycles
-  cycle_numbers <- seq(from = 1, to = length(charge_cycles_list), by = 1)
+  # cycle_numbers <- seq(from = 1, to = length(charge_cycles_list), by = 1)
   charge_cycles_df <- ldply(charge_cycles_list, 
                                .fun = function(x){
                                  cycledata <- import_cc_cycle(x)
                                  cyclenumber <- regmatches(x, regexpr("\\d+",x))
-                                 cbind(cycledata, cycle = cyclenumber)
+                                 cycledf <- cbind(cycledata, cycle = cyclenumber)
+                                 return(cycledf)
                                },
                                ...)
   
@@ -31,7 +32,8 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
                                .fun = function(x){
                                  cycledata <- import_cc_cycle(x)
                                  cyclenumber <- regmatches(x, regexpr("\\d+",x))
-                                 cbind(cycledata, cycle = cyclenumber)
+                                 cycledf <- cbind(cycledata, cycle = cyclenumber)
+                                 return(cycledf)
                                },
                                ...)
 #   for(i in cycle_numbers){
@@ -47,9 +49,9 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   # set all charge cycles to "Charge" type and all discharge cycles to "Discharge" type
   
   # charge_cycles_df <- ldply(charge_cycles_data)
-  charge_cycles_df$type <- "Charge"
+  if(length(charge_cycles_list > 0)) charge_cycles_df$type <- "Charge"
   # discharge_cycles_df <- ldply(discharge_cycles_data)
-  discharge_cycles_df$type <- "Discharge"
+  if(length(discharge_cycles_list > 0)) discharge_cycles_df$type <- "Discharge"
 
   # smush everything into a data.frame
   

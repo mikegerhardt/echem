@@ -18,24 +18,37 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   
   # import all the charge cycles
   cycle_numbers <- seq(from = 1, to = length(charge_cycles_list), by = 1)
-  charge_cycles_data <- lapply(charge_cycles_list, FUN = import_cc_cycle, ...)
+  charge_cycles_df <- ldply(charge_cycles_list, 
+                               .fun = function(x){
+                                 cycledata <- import_cc_cycle(x)
+                                 cyclenumber <- regmatches(x, regexpr("\\d+",x))
+                                 cbind(cycledata, cycle = cyclenumber)
+                               },
+                               ...)
   
   # import all discharge cycles
-  discharge_cycles_data <- lapply(X = discharge_cycles_list, FUN = import_cc_cycle, ...)
-  
-  for(i in cycle_numbers){
-    
-    # this loop adds a cycle number to each data frame in each list. I couldn't figure out how to do with
-    # mapply or mdply or whatever.
-    
-    charge_cycles_data[[i]]$cycle <- i
-    discharge_cycles_data[[i]]$cycle <- i
-  }
+  discharge_cycles_df <- ldply(discharge_cycles_list, 
+                               .fun = function(x){
+                                 cycledata <- import_cc_cycle(x)
+                                 cyclenumber <- regmatches(x, regexpr("\\d+",x))
+                                 cbind(cycledata, cycle = cyclenumber)
+                               },
+                               ...)
+#   for(i in cycle_numbers){
+#     
+#     # this loop adds a cycle number to each data frame in each list. I couldn't figure out how to do with
+#     # mapply or mdply or whatever.
+#     
+#     charge_cycles_data[[i]]$cycle <- i
+#     discharge_cycles_data[[i]]$cycle <- i
+#   }
+#   
   
   # set all charge cycles to "Charge" type and all discharge cycles to "Discharge" type
-  charge_cycles_df <- ldply(charge_cycles_data)
+  
+  # charge_cycles_df <- ldply(charge_cycles_data)
   charge_cycles_df$type <- "Charge"
-  discharge_cycles_df <- ldply(discharge_cycles_data)
+  # discharge_cycles_df <- ldply(discharge_cycles_data)
   discharge_cycles_df$type <- "Discharge"
 
   # smush everything into a data.frame

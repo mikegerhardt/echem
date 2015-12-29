@@ -37,6 +37,7 @@ plot_polcurve <- function(inputdf, xdata = "avgcurrent", ydata = "avgvoltage"){
 
 #' @describeIn plot_polcurve Plot power density versus current density, to see
 #'   peak galvanic power density.
+#' @export
 plot_powercurve <- function(inputdf, xdata = "avgcurrent", ydata = "avgpower"){
   pcplot <- (ggplot(data = inputdf, 
                     aes_string(x = xdata, y = ydata))

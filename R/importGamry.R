@@ -1,8 +1,25 @@
-# Electrochemistry package draft
+# Electrochemistry package
 # Written by Mike Gerhardt
 # 10/17/2015
 
-
+#' Imports a Gamry data file.
+#' 
+#' \code{importGamry} imports a Gamry .dta file and returns a data frame with 
+#' each column corresponding to a column in the data file.
+#' 
+#' This function needs to know which lines in the .dta file to import. The 
+#' default behavior is to count each line in the file and assume that the
+#' number that appears the most times is where the data is stored in the file.
+#' Sometimes this fails because Gamry adds extensive header documentation to
+#' their files. The ncols parameter can be used to manually specify which lines
+#' to import based on how many columns each line has.
+#' 
+#' @param inputfile File to be imported.
+#' @param ncols Number of expected data columns. The default of 0 has the
+#'   function make an educated guess about how many columns there are.
+#'   
+#' @return A data frame with all the data in the .dta file.
+#' @author Mike Gerhardt
 
 importGamry <- function(inputfile = file.choose(), ncols = 0){
   alldata <- readLines(inputfile)
@@ -32,36 +49,5 @@ importGamry <- function(inputfile = file.choose(), ncols = 0){
   }
   
   outdf <- read.table(textConnection(importable.data), header = TRUE)
-  return(outdf)
-}
-
-
-import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im"), ...){
-  inputdf <- importGamry(inputfile, ...)
-  outdf <- inputdf[, cols]
-  return(outdf)
-}
-
-import_cycling_stats <- function(inputfile = file.choose(),
-                                 cols = c("Type", "Cycle", "Charge", "Duration", "Vstart", "Vend", "Energy"),
-                                 efficiencies = TRUE, ...){
-  inputdf <- importGamry(inputfile, ...)
-  outdf <- inputdf[, cols]
-  
-  # The next block calculates current and energy efficiencies, there is a tag to shut it off in function options
-  if(efficiencies == TRUE){
-    charge_cycles <- subset(outdf, Type == 0)
-    discharge_cycles <- subset(outdf, Type == 1)
-    
-    ceffy <- discharge_cycles$Charge / charge_cycles$Charge
-    eeffy <- -discharge_cycles$Energy / charge_cycles$Energy
-    
-    # Order outdf by cycle type (charge/discharge). Then I can add in ceffy and eeffy and they'll repeat over
-    # the whole df, and I don't have to split up the df into charge/discharge dfs.
-    outdf <- outdf[with(outdf, order(Type)), ]
-    outdf$ceffy <- ceffy
-    outdf$eeffy <- eeffy
-  }
-  
   return(outdf)
 }

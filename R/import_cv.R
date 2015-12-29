@@ -1,3 +1,5 @@
+#' @export
+
 import_cv <- function(inputfile = file.choose(), cols = c("Vf", "Im"), 
                       refvoltage = 0.21, earea = 0.07065, multiplier = 1000){
   inputdf <- importGamry(inputfile)

@@ -6,6 +6,7 @@
 
 #' @describeIn import_all_cc_cycles Import all constant voltage cycling curves
 #'   (current vs time)
+#' @export
 
 
 import_all_cv_cycles <- function(filepath, 

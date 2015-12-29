@@ -22,6 +22,7 @@
 #' @author Mike Gerhardt
 #' @seealso \code{\link{import_all_cc_cycles}}, \code{\link{import_cycling_stats}},
 #'   \code{\link{cv_cycle_stats}}
+#' @export
 
 import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im"), ...){
   inputdf <- importGamry(inputfile, ...)

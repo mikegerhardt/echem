@@ -26,6 +26,7 @@
 #' @author Mike Gerhardt
 #' 
 #' @seealso \code{\link[ggplot2]{ggplot}}, \code{\link{import_cycling_stats}}
+#' @export
 
 plot_capacities <- function(inputdf, xdata = "Cycle", ydata = "Charge"){
   cap_plot <- (ggplot(inputdf, aes_string(x = xdata, 

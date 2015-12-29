@@ -24,6 +24,7 @@
 #'   cycle number tag allowing you to subset the data by cycle if you wish.
 #' @author Mike Gerhardt
 #' @seealso \code{\link{import_cc_cycle}}, \code{\link{import_cv_cycle}}
+#' @export
 
 import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
                                  allcyclesid = "CHARGE",

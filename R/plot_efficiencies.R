@@ -23,6 +23,7 @@
 #' @author Mike Gerhardt
 #' 
 #' @seealso \code{\link[ggplot2]{ggplot}}, \code{\link{import_cycling_stats}}
+#' @export
 
 plot_efficiencies <- function(inputdf, energyeffy = TRUE){
   effyplot<- (ggplot(inputdf, aes(x = Cycle, y = ceffy, color = "black")) 

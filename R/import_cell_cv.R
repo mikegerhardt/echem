@@ -35,6 +35,7 @@
 #'    filename of each file is also reported in the state of charge ("soc")
 #'    column for later analysis.
 #' @author Mike Gerhardt
+#' @export
 
 
 import_cell_cv <- function(fname = file.choose(), area = 5, rpm = 50, cols = c("T", "Vf", "Im"),

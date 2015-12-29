@@ -11,6 +11,7 @@
 #' @return Returns a data frame with column names given by the \code{columns}
 #'   input parameter.
 #' @author Mike Gerhardt
+#' @export
 
 
 import_absorption <- function(filename = file.choose(),

@@ -22,6 +22,7 @@
 #' @author Mike Gerhardt
 #' @seealso \code{import_all_cc_cycles}, \code{import_cycling_stats},
 #'   \code{cv_cycle_stats}
+#' @export
 
 import_cc_cycle <- function(inputfile = file.choose(), cols = c("T", "Vf","Im"),
                             getrealtime = TRUE, ...){

@@ -27,7 +27,7 @@
 #' @author Mike Gerhardt
 #' 
 #' @seealso \code{\link[gtools]{mixedsort}}
-#'
+#' @export
 #'  
 import_ocp <- function(filepattern = "OCP_before_CV", state.of.charge = seq(from = 10, to = 100, by = 10)){
   voltages <- ldply(mixedsort(list.files(pattern = filepattern)), getocp)

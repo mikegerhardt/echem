@@ -20,6 +20,7 @@
 #'   
 #' @return A data frame with all the data in the .dta file.
 #' @author Mike Gerhardt
+#' @export
 
 importGamry <- function(inputfile = file.choose(), ncols = 0){
   alldata <- readLines(inputfile)

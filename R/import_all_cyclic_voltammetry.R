@@ -23,6 +23,7 @@
 #'   name of the imported file and a data frame with that file's data.
 #' @seealso \code{\link{import_cv}}
 #' @author Mike Gerhardt
+#' @export
 
 import_all_cyclic_voltammetry <- function(filepath, identifier = ".DTA", ...){
 

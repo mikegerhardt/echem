@@ -32,6 +32,7 @@
 #'
 #' @author Mike Gerhardt
 #' @seealso \code{\link{import_all_cv_cycles}}, \code{\link{import_cycling_stats}}
+#' @export
 
 cv_cycle_stats <- function(inputdf,
                            chargeid = "Charge",

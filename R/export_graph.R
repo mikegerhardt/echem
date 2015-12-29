@@ -6,6 +6,7 @@
 #'   exist, it is created.
 #' @param ggname Name of the gg object to export.
 #' @author Mike Gerhardt
+#' @export
 
 export_graph <- function(fname, ggname, width  = 600, height = 360){
   png(filename = fname, width = width, height = height)

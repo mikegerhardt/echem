@@ -22,6 +22,7 @@
 #' @author Mike Gerhardt
 #' 
 #' @seealso \code{\link[ggplot2]{ggplot}}, \code{\link{import_cell_cv}}
+#' @export
 plot_polcurve <- function(inputdf, xdata = "avgcurrent", ydata = "avgvoltage"){
   pcplot <- (ggplot(data = inputdf, 
                       aes_string(x = xdata, y = ydata),

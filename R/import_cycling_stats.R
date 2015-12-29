@@ -25,7 +25,7 @@
 #'   and energy efficiencies.
 #'   
 #' @author Mike Gerhardt
-#'  
+#' @export
 import_cycling_stats <- function(inputfile = file.choose(),
                                  cols = c("Type", "Cycle", 
                                           "Charge", "Duration", 

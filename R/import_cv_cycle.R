@@ -20,8 +20,8 @@
 #' charge sampled during the cycle.
 #' 
 #' @author Mike Gerhardt
-#' @seealso \code{import_all_cc_cycles}, \code{import_cycling_stats},
-#'   \code{cv_cycle_stats}
+#' @seealso \code{\link{import_all_cc_cycles}}, \code{\link{import_cycling_stats}},
+#'   \code{\link{cv_cycle_stats}}
 
 import_cv_cycle <- function(inputfile = file.choose(), cols = c("T", "Q", "Vf", "Im"), ...){
   inputdf <- importGamry(inputfile, ...)

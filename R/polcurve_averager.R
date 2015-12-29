@@ -1,6 +1,8 @@
 # Function to average the top and bottom traces of a polarization curve
 # Written by MRG 11/27/2015
 
+#' @describeIn import_cell_cv Function which averages the top and bottom traces
+#'   of a polarization curve.
 polcurve_averager <- function(inputdf, voltageid = "Vf", currentid = "scurrent"){
   
   inputlength <- length(inputdf[, voltageid])

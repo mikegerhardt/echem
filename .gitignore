@@ -42,3 +42,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 .Rproj.user
+
+# Other R files
+.RData
+.Rhistory

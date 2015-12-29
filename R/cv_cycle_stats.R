@@ -1,3 +1,38 @@
+# Electrochemistry package
+# Mike Gerhardt 12-28-2015
+#
+#' Compute efficiencies for constant voltage cycling
+#' 
+#' This function takes as input a data set of constant voltage cycles and
+#' returns a data frame listing cycle number, capacity, current efficiency,
+#' energy efficiency, and charging and discharging voltages.
+#' 
+#' At time of writing, Gamry Framework doesn't allow constant voltage cycling
+#' with its cyclic charge/discharge package, meaning that a single .DTA file
+#' with the capacities, efficiencies, etc for constant voltage cycling is never
+#' generated. This function collects that data from constant voltage cycles.
+#' The corollary for constant current cycles has not been written; instead
+#' the \code{import_cycling_stats()} function can be used.
+#' 
+#' @param inputdf Data frame containing all constant voltage cycles, preferably
+#'   imported via \code{import_all_cv_cycles()} or similar
+#' @param chargeid Identifies charge cycles based on subsetting the input data
+#'   frame on the "type" column.
+#' @param dischargeid Identifies discharge cycles based on subsetting the input
+#'   data frame.
+#' @param cycleid The name of the column under which cycle number is stored in
+#'   the input data frame.
+#' @param voltageid The name of the column under which the charging voltage is
+#'   stored in the input data frame.
+#' @param capacityid The name of the column under which the charge capacity is
+#'   stored in the input data frame.
+#' @return Returns a data frame with columns for cycle, charge and discharge
+#'   capacities, current efficiency, charging and discharging voltages,
+#'   charging and discharging energies, and energy efficiency.
+#'
+#' @author Mike Gerhardt
+#' @seealso \code{\link{import_all_cv_cycles}}, \code{\link{import_cycling_stats}}
+
 cv_cycle_stats <- function(inputdf,
                            chargeid = "Charge",
                            dischargeid = "Discharge",

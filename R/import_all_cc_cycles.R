@@ -37,11 +37,17 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   
   # set up a list of filenames to import
   all_cycles_list <- list.files(pattern = allcyclesid,
-                                path = filepath,
-                                full.names = TRUE)
+                                path = filepath)
+  # Don't make all_cycles_list use full.names = TRUE
+  # If you do, both the CHARGE and DISCHARGE tags will appear in each element
+  # of all_cycles_list. Better to split the cycles up first and then paste the full
+  # filename back in.
+  
   discharge_cycles_list <- mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE))
+  discharge_cycles_list <- lapply(discharge_cycles_list, function(x) paste(filepath, x, sep = ""))
 
   charge_cycles_list <- mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE, invert = TRUE))
+  charge_cycles_list <- lapply(charge_cycles_list, function(x) paste(filepath, x, sep = ""))
   
   # import all the charge cycles
 

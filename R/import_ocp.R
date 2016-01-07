@@ -21,6 +21,7 @@
 #'   length as the number of files you wish to import. Each number in the 
 #'   sequence should correspond to the state of charge at which you made each
 #'   open circuit potential measurement.
+#' @param ... Additional arguments that get passed to list.files
 #'   
 #' @return Returns a data frame containing open circuit potential and state of
 #'   charge.
@@ -29,8 +30,10 @@
 #' @seealso \code{\link[gtools]{mixedsort}}
 #' @export
 #'  
-import_ocp <- function(filepattern = "OCP_before_CV", state.of.charge = seq(from = 10, to = 100, by = 10)){
-  voltages <- ldply(mixedsort(list.files(pattern = filepattern)), getocp)
+import_ocp <- function(filepattern = "OCP_before_CV", 
+                       state.of.charge = seq(from = 10, to = 100, by = 10, ...)){
+  voltages <- ldply(mixedsort(list.files(pattern = filepattern, 
+                                         full.names = TRUE, ...)), getocp)
   ocpoutputdf <- data.frame(soc = state.of.charge, open.circuit = voltages)
   colnames(ocpoutputdf) <- c("soc", "ocp")
   return(ocpoutputdf)

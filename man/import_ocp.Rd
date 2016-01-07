@@ -6,7 +6,7 @@
 \title{Import open circuit potential vs state of charge}
 \usage{
 import_ocp(filepattern = "OCP_before_CV", state.of.charge = seq(from = 10,
-  to = 100, by = 10))
+  to = 100, by = 10, ...))
 
 getocp(filename)
 }
@@ -18,6 +18,8 @@ file you wish to import}
 length as the number of files you wish to import. Each number in the 
 sequence should correspond to the state of charge at which you made each
 open circuit potential measurement.}
+
+\item{...}{Additional arguments that get passed to list.files}
 }
 \value{
 Returns a data frame containing open circuit potential and state of

@@ -44,10 +44,10 @@ import_all_cc_cycles <- function(filepath = "mrgPWRCAPACITY/CHARGE_DISCHARGE/",
   # filename back in.
   
   discharge_cycles_list <- mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE))
-  discharge_cycles_list <- lapply(discharge_cycles_list, function(x) paste(x, filepath, sep = ""))
+  discharge_cycles_list <- lapply(discharge_cycles_list, function(x) paste(filepath, x, sep = ""))
 
   charge_cycles_list <- mixedsort(grep(pattern = dischargeid, all_cycles_list, value = TRUE, invert = TRUE))
-  charge_cycles_list <- lapply(charge_cycles_list, function(x) paste(x, filepath, sep = ""))
+  charge_cycles_list <- lapply(charge_cycles_list, function(x) paste(filepath, x, sep = ""))
   
   # import all the charge cycles
 

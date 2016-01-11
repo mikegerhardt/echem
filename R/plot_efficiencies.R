@@ -26,9 +26,9 @@
 #' @export
 
 plot_efficiencies <- function(inputdf, energyeffy = TRUE){
-  effyplot<- (ggplot(inputdf, aes(x = Cycle, y = ceffy, color = "black")) 
+  effyplot<- (ggplot(inputdf, aes(x = Cycle, y = ceffy, color = "Current Effy")) 
      + geom_point()
-     + (if(energyeffy == TRUE) geom_point(aes(x = Cycle, y = eeffy, color = "blue")))
+     + (if(energyeffy == TRUE) geom_point(aes(x = Cycle, y = eeffy, color = "Energy Effy")))
      + theme_bw(18)
      + scale_color_discrete(labels = c("Current Effy", "Energy Effy"),
                             name = "")

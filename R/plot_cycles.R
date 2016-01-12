@@ -27,16 +27,18 @@ plot_cycles <- function(inputdf, cyclelist = "all"){
   } else cycledf <- inputdf
   # If no cyclelist argument is given, just plot all the cycles.
   
-  cyclebreaker <- sapply(cycledf$Type, 
+  cyclebreaker <- sapply(cycledf$type, 
                         function(x) if(x == "Charge") 0 else 0.5)
-  cycledf <- cbind(cycledf, cyclebreaks = cyclebreaker + cycledf$cycle)
-
-  cycleplot <- (ggplot(cycledf, aes(x = Q, y = Vf, color = cycle))
+  cyclebreaks <- cyclebreaker + cycledf$cycle
+  cycledf <- cbind(cycledf, cyclebreaks = cyclebreaks)
+  
+  cycleplot <- (ggplot(cycledf, aes(x = abs(Q), y = Vf, color = cycle,
+                                    group = cyclebreaks))
                 + theme_bw(24)
-                + geom_line(breaks = cyclebreaks)
+                + geom_line()
                 + xlab("Charge (C)")
                 + ylab("Cell Voltage (V)")
-                + scale_color_discrete(name = "Cycle")
+                + scale_color_continuous(name = "Cycle")
   )
   return(cycleplot)
 }

@@ -61,11 +61,11 @@ import_cell_cv <- function(fname = file.choose(), area = 5, rpm = 50, cols = c("
   # Trace Average code
   #-------------------------
   
-  if(traceavg){
-    outdf <- cbind(outdf, 
-                   polcurve_averager(outdf, 
-                                     currentid = if(movingavg) "scurrent" else "current"))
-  }
+#   if(traceavg){
+#     outdf <- cbind(outdf, 
+#                    polcurve_averager(outdf, 
+#                                      currentid = if(movingavg) "scurrent" else "current"))
+#   }
   
   outdf$soc <- fname
   return(outdf)

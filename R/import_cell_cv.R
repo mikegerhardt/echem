@@ -54,15 +54,7 @@ import_cell_cv <- function(fname = file.choose(), area = 5, rpm = 50, cols = c("
   #--------------------
   
   if(movingavg){
-    sampletime <- outdf$T[[2]] - outdf$T[[1]]
-    
-    pts.per.rot <- 60/(rpm * sampletime) + 1 #number of points in a rotation
-    #plus 1 is for the moving avg filter
-    fparams <- rep(1/pts.per.rot, pts.per.rot)
-    
-    outdf$scurrent <- as.vector(filter(outdf$current, fparams, sides = 2))
-    
-    outdf$spower <- outdf$scurrent* outdf$Vf  
+    outdf <- rbind(outdf, polcurve_smoother(outdf, rpm))
   }
   
   #-------------------------
@@ -70,7 +62,9 @@ import_cell_cv <- function(fname = file.choose(), area = 5, rpm = 50, cols = c("
   #-------------------------
   
   if(traceavg){
-    outdf <- polcurve_averager(outdf, currentid = if(movingavg) "scurrent" else "current")
+    outdf <- rbind(outdf, 
+                   polcurve_averager(outdf, 
+                                     currentid = if(movingavg) "scurrent" else "current")
     
   }
   

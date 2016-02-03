@@ -46,5 +46,5 @@ polcurve_smoother <- function(inputdf, rpm){
   smoothed_polcurve <- data.frame(scurrent = smoothed_current,
                                   svoltage = inputdf$Vf,
                                   spower = smoothed_power)
-  return(smootehd_polcurve)
+  return(smoothed_polcurve)
 }

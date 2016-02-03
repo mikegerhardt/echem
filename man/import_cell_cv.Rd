@@ -3,12 +3,15 @@
 \name{import_cell_cv}
 \alias{import_cell_cv}
 \alias{polcurve_averager}
+\alias{polcurve_smoother}
 \title{Imports full cell cyclic voltammogram}
 \usage{
 import_cell_cv(fname = file.choose(), area = 5, rpm = 50, cols = c("T",
   "Vf", "Im"), movingavg = TRUE, traceavg = TRUE, ...)
 
 polcurve_averager(inputdf, voltageid = "Vf", currentid = "scurrent")
+
+polcurve_smoother(inputdf, rpm)
 }
 \arguments{
 \item{fname}{File to import.}
@@ -54,6 +57,9 @@ This function, by default, performs two filters on the data to smooth it.
 \itemize{
 \item \code{polcurve_averager}: Function which averages the top and bottom traces
 of a polarization curve.
+
+\item \code{polcurve_smoother}: Function which smooths out the pulses in the
+polarization curve due to diaphragm pumps
 }}
 \author{
 Mike Gerhardt

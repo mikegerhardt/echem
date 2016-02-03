@@ -64,8 +64,7 @@ import_cell_cv <- function(fname = file.choose(), area = 5, rpm = 50, cols = c("
   if(traceavg){
     outdf <- rbind(outdf, 
                    polcurve_averager(outdf, 
-                                     currentid = if(movingavg) "scurrent" else "current")
-    
+                                     currentid = if(movingavg) "scurrent" else "current"))
   }
   
   outdf$soc <- fname

@@ -10,7 +10,9 @@ plot_cycles(inputdf, cyclelist = "all")
 \item{inputdf}{Data frame, typically generated with
 \code{import_all_cc_cycles}}
 
-\item{cyclelist}{A vector of numbers}
+\item{cyclelist}{A sequence of cycle numbers to plot. For example, setting
+\code{cyclelist} to \code{3:6} will plot only cycles 3 through 6. Defaults
+to plot all cycles.}
 }
 \value{
 Returns a ggplot object containing all charge/discharge cycles 
